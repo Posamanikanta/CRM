@@ -45,3 +45,9 @@ def form_submit(req):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['GET'])
+def candidates(request):
+    employees = Candidate_Form.objects.filter(status="form_pending")
+    serializer = Form_submit(employees, many=True)
+    return Response(serializer.data)
