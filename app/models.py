@@ -25,6 +25,7 @@ class Candidate_Form(models.Model):
     max_length=30,
     default="form_pending"
 )
+    fee = models.DecimalField(max_digits=10,null=True,blank=True, decimal_places=2)
 
 
     
@@ -38,24 +39,24 @@ class Candidate_Form(models.Model):
 #     def __str__(self):
 #         return f"Call Screening for {self.candidate.name} on {self.screening_date}"
 
-# class Interview(models.Model):
-#     name = models.ForeignKey(Candidate_Form, on_delete=models.CASCADE)
-#     interview_date = models.DateTimeField()
-#     interviewer = models.CharField(max_length=100)
-#     link = models.URLField()
-   
+class Interview(models.Model):
+    name = models.ForeignKey(Candidate_Form, on_delete=models.CASCADE)
+    interview_date = models.DateTimeField()
+    interviewer = models.CharField(max_length=100)
+    link = models.URLField()
+    
     
 #     def __str__(self):
 #         return f"Interview for {self.name.name} on {self.interview_date}"
     
-# class payment(models.Model):
-#     candidate = models.ForeignKey(Candidate_Form, on_delete=models.CASCADE)
-#     amount = models.DecimalField(max_digits=10, decimal_places=2)
-#     payment_date = models.DateTimeField(auto_now_add=True)
-#     screenshot = models.FileField(upload_to='screenshots/')
-    
-#     def __str__(self):
-#         return f"Payment of {self.amount} for {self.candidate.name} on {self.payment_date}"
+class payment(models.Model):
+    candidate = models.ForeignKey(Candidate_Form, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_date = models.DateTimeField(auto_now_add=True)
+    screenshot = models.FileField(upload_to='screenshots/')
+    bank_name = models.CharField(max_length=100, null=True, blank=True)
+    def __str__(self):
+        return f"Payment of {self.amount} for {self.candidate.name} on {self.payment_date}"
 
 # class Offer(models.Model):
 #     name = models.ForeignKey(Candidate_Form, on_delete=models.CASCADE)

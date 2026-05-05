@@ -5,3 +5,5 @@ from .models import *
 admin.site.register(Signup)
 admin.site.register(Document)
 admin.site.register(Candidate_Form)
+admin.site.register(payment)
+admin.site.register(Interview)
