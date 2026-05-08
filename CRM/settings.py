@@ -25,8 +25,23 @@ SECRET_KEY = 'django-insecure-50k_c2b*bhz2#qa&$8%0_#@qy+@uvco8%u^)^_t0gj3@8)s5wm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.8','*','localhost']
+ALLOWED_HOSTS = ['*', 'theoppty.com', 'hiring.theoppty.com', 'localhost', '127.0.0.1']
 
+
+# settings.py
+
+# Hostinger SMTP Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.hostinger.com'
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True  # Hostinger uses SSL on port 465
+# EMAIL_USE_TLS = False # Make sure TLS is False if using SSL
+
+EMAIL_HOST_USER = 'saleem.v@oppty.in'        # Replace with your exact Hostinger email
+EMAIL_HOST_PASSWORD = 'Shaik@123' # The password you use to log into Hostinger Webmail
+
+# This is what the candidate will see in their inbox as the sender
+DEFAULT_FROM_EMAIL = 'Oppty HR <saleem.v@oppty.in>'
 
 # Application definition
 
@@ -54,6 +69,21 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     
     
+]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://theoppty.com",
+    "https://hiring.theoppty.com",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://theoppty.com",
+    "https://hiring.theoppty.com",
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
 ]
 
 ROOT_URLCONF = 'CRM.urls'

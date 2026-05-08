@@ -24,3 +24,30 @@ class Sign_in(serializers.Serializer):
             raise ValidationError("INVALID EMAIL OR PASSWORD")
         data['employee']=employee
         return data
+    
+
+class Admin_Sign_in(serializers.Serializer):
+    email=serializers.EmailField()
+    password=serializers.CharField()
+    def validate(self,data):
+        email=data.get('email')
+        password=data.get('password')
+        try:
+            employee=Admin.objects.get(email=email,password=password)
+        except:
+            raise ValidationError("INVALID EMAIL OR PASSWORD")
+        data['employee']=employee
+        return data
+    
+class Super_Admin_Sign_in(serializers.Serializer):
+    email=serializers.EmailField()
+    password=serializers.CharField()
+    def validate(self,data):
+        email=data.get('email')
+        password=data.get('password')
+        try:
+            employee=SuperAdmin.objects.get(email=email,password=password)
+        except:
+            raise ValidationError("INVALID EMAIL OR PASSWORD")
+        data['employee']=employee
+        return data
